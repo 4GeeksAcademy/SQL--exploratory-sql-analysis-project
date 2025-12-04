@@ -20,7 +20,7 @@ SELECT COUNT(DISTINCT species_id) AS total_species FROM observations;
 SELECT COUNT(*) AS observations_region_2 FROM observations WHERE region_id = 2;
 
 -- 5. 
-SELECT COUNT(*) AS observations_that_day 
+SELECT COUNT(*) AS observation_date  
 FROM observations 
 WHERE date = '1998-08-08';
 
@@ -44,13 +44,20 @@ SELECT observer, COUNT(*) AS total_obs FROM observations GROUP BY observer ORDER
 
 
 -- 10. 
-SELECT o.observation_id, r.name AS region_name FROM observations o JOIN regions r ON o.region_id = r.region_id;
+SELECT o.id AS observation_id, r.name AS region_name
+FROM observations o
+JOIN regions r ON o.region_id
 
 -- 11. 
-SELECT o.observation_id, s.scientific_name FROM observations o JOIN species s ON o.species_id = s.species_id;
+SELECT o.id AS observation_id, s.scientific_name
+FROM observations o
+JOIN species s ON o.species_id = s.id;
 
 -- 12. 
-SELECT region_id, species_id, COUNT(*) AS total_obs FROM observations GROUP BY region_id, species_id ORDER BY region_id, total_obs DESC;
+SELECT region_id, species_id, COUNT(*) AS total_obs
+FROM observations
+GROUP BY region_id, species_id
+ORDER BY region_id, total_obs DESC;
 
 
 
